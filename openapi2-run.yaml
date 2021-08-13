@@ -1,0 +1,31 @@
+# openapi2-run.yaml
+swagger: '2.0'
+info:
+  title: echo API
+  description: Sample API on API Gateway with a Cloud Run backend
+  version: 1.0.0
+schemes:
+- https
+produces:
+- application/json
+x-google-backend:
+  address: https://echo-api-6xgkyezkbq-km.a.run.app/
+paths:
+  /:
+    get:
+      parameters:
+        - in: path
+          name: echo
+          type: string
+          required: true
+          description: echo string to return
+      summary: echo
+      operationId: getEcho
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: object
+            properties:
+              echo:
+                type: "string"
