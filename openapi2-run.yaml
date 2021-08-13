@@ -8,10 +8,8 @@ schemes:
 - https
 produces:
 - application/json
-x-google-backend:
-  address: https://echo-api-6xgkyezkbq-km.a.run.app/
 paths:
-  /:
+  /api:
     get:
       parameters:
         - in: path
@@ -21,6 +19,8 @@ paths:
           description: echo string to return
       summary: echo
       operationId: getEcho
+      x-google-backend:
+        address: https://echo-api-6xgkyezkbq-km.a.run.app/
       responses:
         '200':
           description: A successful response
