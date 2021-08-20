@@ -8,6 +8,16 @@ schemes:
 - https
 produces:
 - application/json
+x-google-backend:
+  address: https://echo-api-6xgkyezkbq-km.a.run.app/
+securityDefinitions:
+  firebase:
+    authorizationUrl: ""
+    flow: "implicit"
+    type: "oauth2"
+    x-google-issuer: "https://securetoken.google.com/nick-learning-322807"
+    x-google-jwks_uri: "https://www.googleapis.com/service_accounts/v1/metadata/x509/securetoken@system.gserviceaccount.com"
+    x-google-audiences: "nick-learning-322807"
 paths:
   /api:
     get:
@@ -19,8 +29,8 @@ paths:
           description: echo string to return
       summary: echo
       operationId: getEcho
-      x-google-backend:
-        address: https://echo-api-6xgkyezkbq-km.a.run.app/
+      security:
+        - firebase: [ ]
       responses:
         '200':
           description: A successful response
@@ -29,3 +39,4 @@ paths:
             properties:
               echo:
                 type: "string"
+
