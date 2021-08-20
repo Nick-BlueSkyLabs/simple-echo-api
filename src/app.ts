@@ -1,11 +1,15 @@
 import Fastify from "fastify";
-import cors from "fastify-cors"
 
+// Types
 import { Request } from "./Types/Request"
 
+// Plugins
+import cors from "fastify-cors"
+import { DecodeUser } from "./Plugins/DecodeUser"
+
+// Handlers
 import { indexHandler } from "./endpoints/index"
 
-import { DecodeUser } from "./Plugins/DecodeUser"
 
 export const app = Fastify({ logger: true });
 

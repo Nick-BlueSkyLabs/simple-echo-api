@@ -16,7 +16,7 @@ export const DecodeUser = async (fastify: FastifyInstance, opts: Options) => {
     return;
   })
   
-  return;
+  return fastify
 }
 
 const decodeUserInfo = (request: Request) => {
