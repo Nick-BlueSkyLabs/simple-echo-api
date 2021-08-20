@@ -19,7 +19,7 @@ securityDefinitions:
     x-google-jwks_uri: "https://www.googleapis.com/service_accounts/v1/metadata/x509/securetoken@system.gserviceaccount.com"
     x-google-audiences: "nick-learning-322807"
 paths:
-  /api:
+  /:
     get:
       parameters:
         - in: path
@@ -39,4 +39,10 @@ paths:
             properties:
               echo:
                 type: "string"
+    options:
+      summary: echo options
+      operationId: optionsEcho
+      responses:
+        '200':
+          description: A successful response
 
