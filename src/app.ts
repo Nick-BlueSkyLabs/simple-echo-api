@@ -1,7 +1,11 @@
-import Fastify, { FastifyRequest } from "fastify";
+import Fastify from "fastify";
 import cors from "fastify-cors"
 
+import { Request } from "./Types/Request"
+
 import { indexHandler } from "./endpoints/index"
+
+import { DecodeUser } from "./Plugins/DecodeUser"
 
 export const app = Fastify({ logger: true });
 
@@ -9,21 +13,7 @@ app.register(cors, {
   origin: "http://localhost:3000"
 })
 
-app.register(async (fastify, opts) => {
-  fastify.addHook("preHandler", async (request: FastifyRequest, reply) => {
-    const userInfo = decodeUserInfo(request)
-    request.headers.user = userInfo
-    return;
-  });
-  return;
-}, {})
-
-const decodeUserInfo = (request: FastifyRequest) => {
-  const userInfoBase64 = request.headers["x-apigateway-api-userinfo"] as string
-  const userInfoString = Buffer.from(userInfoBase64, 'base64').toString('ascii')
-  const userInfo = JSON.parse(userInfoString)
-  return userInfo
-}
+app.register(DecodeUser, {})
 
 app.get("/", indexHandler);
 
