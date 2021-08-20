@@ -11,6 +11,8 @@ export const indexHandler = async (
 
   const { echo } = request.query as Query;
 
-  return { echo, timestamp: new Date() }
+  const { headers } = request
+
+  return { echo, timestamp: new Date(), headers }
 
 }
