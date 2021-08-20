@@ -11,7 +11,10 @@ export const DecodeUser = fp((fastify: FastifyInstance, opts: Options, next: any
 
   fastify.addHook("preHandler", (request: Request, reply, done) => {
     // add user to request object 
-    fastify.decorateRequest("user", decodeUserInfo(request))
+    fastify.decorateRequest("user", {})
+    const userInfo = decodeUserInfo(request)
+    request.user = userInfo
+    console.log({ userInfo })
 
     done()
   })
