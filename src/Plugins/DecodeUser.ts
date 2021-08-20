@@ -6,17 +6,17 @@ interface Options {
 
 }
 
-export const DecodeUser = (fastify: FastifyInstance, opts: Options, done) => {
+export const DecodeUser = async (fastify: FastifyInstance, opts: Options) => {
 
-  fastify.addHook("preHandler", (request: Request, reply, done) => {
+  fastify.addHook("preHandler", async (request: Request, reply) => {
     // add user to request object 
     fastify.decorateRequest("user", decodeUserInfo(request))
     // request.user = 
 
-    done();
+    return;
   })
   
-  done()
+  return;
 }
 
 const decodeUserInfo = (request: Request) => {
