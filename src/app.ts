@@ -21,7 +21,7 @@ app.register(cors, {
 
 // decode user base64 string from api gateway on every request
 app.decorateRequest("user", {})
-app.addHook("preHandler", decodeUser)
+app.addHook("onRequest", decodeUser)
 
 // register route handlers
 app.get("/", indexHandler);
