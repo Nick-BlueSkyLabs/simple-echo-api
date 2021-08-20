@@ -5,9 +5,8 @@ import { indexHandler } from "./endpoints/index"
 
 export const app = Fastify({ logger: true });
 
-
 app.register(cors, { 
-  origin: "*"
+  origin: "http://localhost:3000"
 })
 
 app.get("/", indexHandler);
