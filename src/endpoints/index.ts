@@ -15,7 +15,7 @@ export const indexHandler = async (
   // const userInfo = decodeUserInfo(request)
   // console.timeEnd("decode base64")
 
-  return { echo, timestamp: new Date(), user: request.user }
+  return { echo, timestamp: new Date(), user: request.headers.user }
 
 }
 

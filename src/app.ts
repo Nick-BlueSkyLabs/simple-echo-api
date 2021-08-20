@@ -12,7 +12,7 @@ app.register(cors, {
 app.register(async (fastify, opts) => {
   fastify.addHook("preHandler", async (request: FastifyRequest, reply) => {
     const userInfo = decodeUserInfo(request)
-    request.user = userInfo
+    request.headers.user = userInfo
     return;
   });
   return;
