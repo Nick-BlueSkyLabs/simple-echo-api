@@ -1,4 +1,5 @@
 import { FastifyInstance } from "fastify";
+import fp from 'fastify-plugin';
 
 import { Request } from "../Types/Request"
 
@@ -6,18 +7,17 @@ interface Options {
 
 }
 
-export const DecodeUser = async (fastify: FastifyInstance, opts: Options) => {
+export const DecodeUser = fp((fastify: FastifyInstance, opts: Options, next: any) => {
 
-  fastify.addHook("preHandler", async (request: Request, reply) => {
+  fastify.addHook("preHandler", (request: Request, reply, done) => {
     // add user to request object 
     fastify.decorateRequest("user", decodeUserInfo(request))
-    // request.user = 
 
-    return;
+    done()
   })
   
-  return fastify
-}
+  next();
+}, {})
 
 const decodeUserInfo = (request: Request) => {
   const userInfoBase64 = request.headers["x-apigateway-api-userinfo"] as string
