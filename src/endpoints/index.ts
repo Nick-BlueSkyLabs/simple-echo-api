@@ -1,5 +1,5 @@
-import { FastifyRequest, FastifyReply } from "fastify";
-import { Request } from "../Types/Request"
+import type { FastifyRequest, FastifyReply } from "fastify";
+import type { Request } from "../Types/Request"
 
 interface Query {
   echo: string;
