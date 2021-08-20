@@ -22,4 +22,5 @@ export function consumeEvent() {
 
   // Listen for new messages
   subscription.on('message', messageHandler);
+  console.log('listening for messages')
 }
